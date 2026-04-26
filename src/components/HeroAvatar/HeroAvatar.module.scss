@@ -1,0 +1,50 @@
+.avatar {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  max-height: 600px;
+  box-sizing: border-box;
+  padding: 5px;
+  border: 3px solid var(--color-gold);
+  background-color: var(--color-bg-secondary);
+  z-index: 1;
+}
+
+.box {
+  width: 40px;
+  height: 40px;
+  background: var(--color-gold);
+}
+
+.decor {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+  z-index: 2;
+}
+
+.decorTop {
+  top: 0;
+  left: 0;
+}
+
+.decorBottom {
+  bottom: 0;
+  left: 0;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-secondary);
+  z-index: 3;
+}
+
+.image {
+
+
+  width: 100%;
+}
