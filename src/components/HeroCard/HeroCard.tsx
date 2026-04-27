@@ -5,6 +5,7 @@ import {
     type HeroShort
 } from "../../types/hero.ts";
 import {ComplexityDiamonds} from "../ComplexityDiamonds/ComplexityDiamonds.tsx";
+import {HeroName} from "../HeroName/HeroName.tsx";
 
 interface HeroCardProps extends HeroShort {
     isFavorite: boolean;
@@ -26,7 +27,7 @@ export const HeroCard = (props: HeroCardProps) => {
                 <img className={styles['hero-card__image']} src={imageURL} alt={name_loc}/>
             </div>
             <div className={styles['hero-card__text']}>
-                <h2 className={styles['hero-card__name']}>{name_loc}</h2>
+                <HeroName>{name_loc}</HeroName>
                 <ul className={styles['hero-card__list']}>
                     <li className={styles['hero-card__item']}>
                         <img className={styles['hero-card__attr-icon']} src={ATTR_ICON[primary_attr]}

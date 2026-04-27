@@ -1,13 +1,14 @@
 import styles from './HeroAvatar.module.scss';
 import {HeroInfoBar} from "../../pages/HeroInfoBar/HeroInfoBar.tsx";
-import type {HeroShort} from "../../types/hero.ts";
+import type {HeroDetail} from "../../types/hero.ts";
 
-interface HeroAvatarProps extends HeroShort{
 
+interface HeroAvatarProps extends HeroDetail {
+    className?: string;
 }
 
 export const HeroAvatar = (props: HeroAvatarProps) => {
-    const {primary_attr, complexity, name_loc, name} = props;
+    const {primary_attr, complexity, name_loc, name, npe_desc_loc} = props;
     const baseAvatarURL = `https://cdn.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/`
 
     const nameRaw = name.toLowerCase().replace('npc_dota_hero_', '')
@@ -28,7 +29,7 @@ export const HeroAvatar = (props: HeroAvatarProps) => {
             </div>
 
             <div className={styles.heroInfo}>
-                <HeroInfoBar primary_attr={primary_attr} complexity={complexity} />
+                <HeroInfoBar descr={npe_desc_loc} name={name_loc} primary_attr={primary_attr} complexity={complexity} />
             </div>
 
             <div className={styles.imageWrapper}>
