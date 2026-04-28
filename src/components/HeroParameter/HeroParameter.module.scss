@@ -1,0 +1,26 @@
+.parametersList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.parameter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-primary);
+}
+
+.title {
+  font-size: var(--heading-big);
+  color: var(--color-gold);
+  margin-top: 0;
+}
+
+.container {
+  display: flex;
+  gap: 35px;
+}

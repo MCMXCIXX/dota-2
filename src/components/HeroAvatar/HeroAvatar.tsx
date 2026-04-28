@@ -8,7 +8,7 @@ interface HeroAvatarProps extends HeroDetail {
 }
 
 export const HeroAvatar = (props: HeroAvatarProps) => {
-    const {primary_attr, complexity, name_loc, name, npe_desc_loc} = props;
+    const {primary_attr, complexity, name_loc, name, npe_desc_loc, className} = props;
     const baseAvatarURL = `https://cdn.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/`
 
     const nameRaw = name.toLowerCase().replace('npc_dota_hero_', '')
@@ -18,7 +18,7 @@ export const HeroAvatar = (props: HeroAvatarProps) => {
     } as const;
 
     return (
-        <div className={styles.avatar}>
+        <div className={`${styles.avatar} ${className ?? ''}`}>
             <div className={`${styles.decor} ${styles.decorTop}`}>
                 <div className={styles.box}></div>
                 <div className={styles.box}></div>

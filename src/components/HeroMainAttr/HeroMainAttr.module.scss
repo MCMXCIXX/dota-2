@@ -1,0 +1,32 @@
+.attrItem {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+
+}
+
+.attrList {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.attrIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.attrValue {
+  color: var(--color-text-primary);
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+
+.attrPerLevel {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}

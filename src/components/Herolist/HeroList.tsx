@@ -28,7 +28,7 @@ export const HeroList = () => {
     return (
         <div className={`${styles.heroList}`}>
             {heroListShorts.map(({id, name_loc, primary_attr, name, complexity}) => (
-                <HeroCard key={id} id={id} name={name} isFavorite={false} name_loc={name_loc}
+                <HeroCard  key={id} id={id} name={name} isFavorite={false} name_loc={name_loc}
                           primary_attr={primary_attr} complexity={complexity}/>
             ))}
 

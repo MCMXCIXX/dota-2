@@ -1,5 +1,12 @@
 .detailHero {
-  display: flex;
+  display: grid;
+  grid-template-columns: 32% 1fr;
+  grid-template-rows: repeat(2, 270px);
   gap: 32px;
   padding: 16px 0;
+
+}
+
+.heroAvatar {
+  grid-area: 1 / 1 / 3 / 2;
 }

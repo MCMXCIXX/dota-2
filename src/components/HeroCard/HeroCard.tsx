@@ -6,6 +6,8 @@ import {
 } from "../../types/hero.ts";
 import {ComplexityDiamonds} from "../ComplexityDiamonds/ComplexityDiamonds.tsx";
 import {HeroName} from "../HeroName/HeroName.tsx";
+import {useLocation, useNavigate} from "react-router-dom";
+import {getClearName} from "../../services/utils.ts";
 
 interface HeroCardProps extends HeroShort {
     isFavorite: boolean;
@@ -16,13 +18,13 @@ interface HeroCardProps extends HeroShort {
 
 export const HeroCard = (props: HeroCardProps) => {
 
-    const {name_loc, primary_attr, isFavorite, complexity, name} = props;
-    const imageURL = `https://cdn.steamstatic.com/apps/dota2/images/dota_react/heroes/${name.toLowerCase().replace('npc_dota_hero_', '')}.png`
-
-
+    const {name_loc, primary_attr, isFavorite, complexity, name, id} = props;
+    const imageURL = `https://cdn.steamstatic.com/apps/dota2/images/dota_react/heroes/${getClearName(name)}.png`
+    const navigate = useNavigate()
+    const location = useLocation()
 
     return (
-        <div className={styles['hero-card']}>
+        <div className={styles['hero-card']} onClick={() => {navigate(`/hero/${id}`, { state: { background: location } });}}>
             <div className={styles['hero-card__image-wrapper']}>
                 <img className={styles['hero-card__image']} src={imageURL} alt={name_loc}/>
             </div>

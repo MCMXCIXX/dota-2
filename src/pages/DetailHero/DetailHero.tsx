@@ -7,6 +7,8 @@ import type {AppDispatch, RootState} from "../../services/store/store.ts";
 import {loadHeroDetailDataThunk} from "../../services/thunks/heroThunks.ts";
 import type {HeroDetail} from "../../types/hero.ts";
 import {HeroBio} from "../../components/HeroBio/HeroBio.tsx";
+import {HeroAbilitiesList} from "../../components/HeroAbilitiesList/HeroAbilitiesList.tsx";
+import {HeroStats} from "../../components/HeroStats/HeroStats.tsx";
 
 
 export const DetailHero = () => {
@@ -32,7 +34,9 @@ export const DetailHero = () => {
             <div className={styles.detailHero}>
                 <HeroAvatar className={styles.heroAvatar} {...hero} />
                 <HeroBio bioText={hero.bio_loc}/>
+                <HeroAbilitiesList heroAbilities={hero.abilities} />
             </div>
+            <HeroStats hero={hero}  />
         </div>
 
     );

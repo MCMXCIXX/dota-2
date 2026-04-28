@@ -1,0 +1,14 @@
+.container {
+
+}
+
+.abilityList {
+  display: flex;
+  gap: 10px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: var(--heading-big);
+  color: var(--color-gold);
+}
