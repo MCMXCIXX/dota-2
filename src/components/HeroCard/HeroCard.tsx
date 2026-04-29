@@ -10,7 +10,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {getClearName} from "../../services/utils.ts";
 import {useDispatch} from "react-redux";
 import type {AppDispatch} from "../../services/store/store.ts";
-import {addToFavoriteHero} from "../../services/redusers/heroReducer.ts";
+import {addToFavoriteHero, deleteFromFavoriteHero} from "../../services/redusers/heroReducer.ts";
 
 interface HeroCardProps {
     hero: HeroShort;
@@ -31,7 +31,13 @@ export const HeroCard = (props: HeroCardProps) => {
 
     const favoriteOnClick = (e: React.MouseEvent) => {
         e.stopPropagation()
-        dispatch(addToFavoriteHero(hero.id))
+        if(isFavorite) {
+            dispatch(deleteFromFavoriteHero(hero.id))
+        } else {
+            dispatch(addToFavoriteHero(hero.id))
+        }
+
+
     }
 
 

@@ -1,18 +1,23 @@
 import './App.css'
 
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {MainPage} from "./pages/MainPage/MainPage.tsx";
 import {DetailHero} from "./pages/DetailHero/DetailHero.tsx";
 import {FavoriteHeroes} from "./pages/FavoriteHeroes/FavoriteHeroes.tsx";
+import {Header} from "./components/Header/Header.tsx";
 
 function App() {
 
     return (
-        <Routes>
-            <Route path="/" element={<MainPage/>}/>
-            <Route path="/hero/:heroID" element={<DetailHero/>}/>
-            <Route path="/heroes/favorite/" element={<FavoriteHeroes/>}/>
-        </Routes>
+        <>
+            <Header />
+            <Routes>
+                <Route path="/" element={<Navigate to="/heroes" replace/>}/>
+                <Route path="/heroes/" element={<MainPage/>}/>
+                <Route path="/hero/:heroID" element={<DetailHero/>}/>
+                <Route path="/heroes/favorite/" element={<FavoriteHeroes/>}/>
+            </Routes>
+        </>
 
     )
 }

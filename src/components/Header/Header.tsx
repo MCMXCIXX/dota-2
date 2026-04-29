@@ -1,13 +1,13 @@
 
 import styles from './Header.module.scss';
-import {Button} from "../Button/Button.tsx";
+import {NavLink} from "react-router-dom";
 
 
 export const Header = () => {
     return (
-        <header className={styles.header}>
-            <Button>Все персонажи</Button>
-            <Button>Избранное</Button>
+        <header className={`${styles.header} container`}>
+            <NavLink className={({isActive}) => `${'button'} ${isActive ? 'buttonActive' : ''}`} to="/heroes/" end>Все персонажи</NavLink>
+            <NavLink className={({isActive}) => `${'button'} ${isActive ? 'buttonActive' : ''}`} to="/heroes/favorite/">Избранное</NavLink>
         </header>
     );
 };

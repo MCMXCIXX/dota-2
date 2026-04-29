@@ -36,7 +36,7 @@ export const fetchHeroes = createAsyncThunk<HeroShort[], void, { rejectValue: st
     }
 )
 
-export const fetchHeroDetail = createAsyncThunk<HeroDetail, number, {rejectValue: string}>(
+export const fetchHeroDetail = createAsyncThunk<HeroDetail, number, { rejectValue: string }>(
     'hero/fetchHeroDetail',
     async (id, {rejectWithValue}) => {
         try {
@@ -55,6 +55,9 @@ export const heroReducerSlice = createSlice({
     reducers: {
         addToFavoriteHero: (state, action: PayloadAction<number>) => {
             state.favoriteHeroes.push(action.payload);
+        },
+        deleteFromFavoriteHero: (state, action: PayloadAction<number>) => {
+            state.favoriteHeroes = state.favoriteHeroes.filter((heroID) => heroID !== action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -90,5 +93,6 @@ export const heroReducerSlice = createSlice({
 
 
 export const {
-    addToFavoriteHero
+    addToFavoriteHero, deleteFromFavoriteHero
+
 } = heroReducerSlice.actions;

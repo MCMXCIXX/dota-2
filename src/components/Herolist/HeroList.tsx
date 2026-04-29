@@ -19,7 +19,9 @@ export const HeroList = (props: HeroListProps) => {
 
 
     useEffect(() => {
-        dispatch(fetchHeroes())
+        if (heroListShorts.length === 0) {
+            dispatch(fetchHeroes());
+        }
     }, []);
 
     const filteredHeroes = filter ? heroListShorts.filter(filter) : heroListShorts;
