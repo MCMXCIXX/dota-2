@@ -6,13 +6,20 @@ import {request} from "../api.ts";
 interface HeroState {
     heroListShorts: HeroShort[];
     heroDetailList: HeroDetail[];
+    favoriteHeroes: number[];
     loading: boolean;
     error: string | null;
+}
+
+const loadFromStorage = <T>(key: string, fallback: T): T => {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : fallback;
 }
 
 const initialState: HeroState = {
     heroListShorts: [],
     heroDetailList: [],
+    favoriteHeroes: loadFromStorage('favoriteHeroes', []),
     loading: false,
     error: null,
 }
@@ -46,7 +53,9 @@ export const heroReducerSlice = createSlice({
     name: 'heroReducer',
     initialState,
     reducers: {
-
+        addToFavoriteHero: (state, action: PayloadAction<number>) => {
+            state.favoriteHeroes.push(action.payload);
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -81,4 +90,5 @@ export const heroReducerSlice = createSlice({
 
 
 export const {
+    addToFavoriteHero
 } = heroReducerSlice.actions;

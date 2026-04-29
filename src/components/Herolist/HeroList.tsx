@@ -4,19 +4,25 @@ import {useDispatch, useSelector} from "react-redux";
 import type {AppDispatch, RootState} from "../../services/store/store.ts";
 import {fetchHeroes} from "../../services/redusers/heroReducer.ts";
 import {useEffect} from "react";
+import type {HeroShort} from "../../types/hero.ts";
 
+interface HeroListProps {
+    filter?: (hero: HeroShort) => boolean;
+}
 
-
-export const HeroList = () => {
-
+export const HeroList = (props: HeroListProps) => {
+    const {filter} = props
     const dispatch = useDispatch<AppDispatch>();
-    const {heroListShorts, loading, error} = useSelector(
+    const {heroListShorts, favoriteHeroes, loading, error} = useSelector(
         (state: RootState) => state.heroReducerSlice
     );
+
 
     useEffect(() => {
         dispatch(fetchHeroes())
     }, []);
+
+    const filteredHeroes = filter ? heroListShorts.filter(filter) : heroListShorts;
 
 
     if (loading) {
@@ -25,12 +31,13 @@ export const HeroList = () => {
     if (error) {
         return <div className={styles.attention}>Загрузка героев...</div>;
     }
+
     return (
         <div className={`${styles.heroList}`}>
-            {heroListShorts.map(({id, name_loc, primary_attr, name, complexity}) => (
-                <HeroCard  key={id} id={id} name={name} isFavorite={false} name_loc={name_loc}
-                          primary_attr={primary_attr} complexity={complexity}/>
-            ))}
+            {filteredHeroes.map((hero) => {
+                const isFavorite = favoriteHeroes.includes(hero.id);
+                return <HeroCard isFavorite={isFavorite} hero={hero}/>
+            })}
 
         </div>
     );

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  /* ========== Основные цвета фона ========== */
+  --color-bg-primary: #0d0d0d;          /* Самый тёмный, почти чёрный */
+  --color-bg-secondary: #1a1a1a;        /* Фон карточек, панелей */
+  --color-bg-tertiary: #262626;         /* Подложки под текст, инпуты */
+  --color-bg-overlay: rgba(0, 0, 0, 0.6); /* Затемнение для модалок */
+
+  /* ========== Текстовые цвета ========== */
+  --color-text-primary: #e0d7c6;        /* Основной текст (светлый, тёплый) */
+  --color-text-secondary: #a89b8c;      /* Второстепенный текст */
+  --color-text-muted: #6b5e4f;          /* Приглушённый текст (подписи) */
+  --color-text-accent: #c89b3c;         /* Золотой заголовок (как в Dota 2) */
+
+  /* ========== Акцентные цвета ========== */
+  --color-gold: #c89b3c;                /* Золотой (кнопки, рамки) */
+  --color-gold-light: #e4b54a;          /* Светлое золото (ховер) */
+  --color-gold-dark: #a67c2a;           /* Тёмное золото (актив) */
+
+  --color-red: #e64a19;                 /* Красный для лайка, удаления */
+  --color-red-light: #ff6d3a;
+  --color-red-dark: #b2320d;
+
+  /* ========== Функциональные цвета ========== */
+  --color-like-active: var(--color-red);
+  --color-delete: #c0392b;
+
+  /* ========== Границы и разделители ========== */
+  --border-color: #3a3226;              /* Тонкая золотисто-коричневая рамка */
+  --border-color-hover: var(--color-gold);
+
+  /* ========== Тени ========== */
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-color);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 0 2px var(--color-gold);
+  --shadow-button: 0 2px 8px rgba(200, 155, 60, 0.3);
+  --shadow-glow: 0 0 12px rgba(200, 155, 60, 0.4); /* Магическое свечение */
+
+
+  /* ========== Закругления ========== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* ========== Переходы ========== */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+
+  --heading-normal: 16px;
+  --heading-big: 22px;
+
+  --text-size: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.heading-big.heading-big {
+  font-size: var(--heading-big);
+}
