@@ -115,11 +115,13 @@ export const ATTR_COLORS: Record<HeroPrimaryAttr, string> = {
     [HERO_ATTR.Universal]: '#9b59b6',
 };
 
+const BASE = import.meta.env.BASE_URL;
+
 export const ATTR_ICON: Record<HeroPrimaryAttr, string> = {
-    [HERO_ATTR.Strength]: '/icons/attributes/hero_strength.png',
-    [HERO_ATTR.Agility]: '/icons/attributes/hero_agility.png',
-    [HERO_ATTR.Intelligence]: '/icons/attributes/hero_intelligence.png',
-    [HERO_ATTR.Universal]: '/icons/attributes/hero_universal.png',
+    [HERO_ATTR.Strength]: `${BASE}icons/attributes/hero_strength.png`,
+    [HERO_ATTR.Agility]: `${BASE}icons/attributes/hero_agility.png`,
+    [HERO_ATTR.Intelligence]: `${BASE}icons/attributes/hero_intelligence.png`,
+    [HERO_ATTR.Universal]: `${BASE}icons/attributes/hero_universal.png`,
 };
 
 // const COMPLEXITY_NAMES: Record<HeroComplexity, string> = {

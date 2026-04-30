@@ -72,6 +72,9 @@ export const heroReducerSlice = createSlice({
             } as HeroDetail;
             state.customHero.push(newHero);
             state.heroDetailList.push(newHero);
+        },
+        deleteCustomHero: (state, action: PayloadAction<number>) => {
+            state.customHero = state.customHero.filter((hero: HeroDetail) => hero.id !== action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -107,6 +110,6 @@ export const heroReducerSlice = createSlice({
 
 
 export const {
-    addToFavoriteHero, deleteFromFavoriteHero, updateSearchInput, createHero
+    addToFavoriteHero, deleteFromFavoriteHero, updateSearchInput, createHero, deleteCustomHero
 
 } = heroReducerSlice.actions;

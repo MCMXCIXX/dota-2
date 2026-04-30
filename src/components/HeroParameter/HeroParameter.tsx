@@ -5,6 +5,8 @@ interface HeroParameterProps {
     hero: HeroDetail
 }
 
+const BASE = import.meta.env.BASE_URL;
+
 export const HeroParameter = (props: HeroParameterProps) => {
     const {hero} = props;
 
@@ -15,17 +17,17 @@ export const HeroParameter = (props: HeroParameterProps) => {
                 <ul className={styles.parametersList}>
 
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_damage.png" alt="Урон"/>
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_damage.png`} alt="Урон"/>
                         <div>{hero.damage_min}-{hero.damage_max}</div>
                     </li>
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_attack_time.png"
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_attack_time.png`}
                              alt="Скорость атаки"/>
                         <div>{hero.attack_rate}</div>
                     </li>
 
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_attack_range.png"
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_attack_range.png`}
                              alt="Дальность атаки"/>
                         <div>{hero.attack_range}</div>
                     </li>
@@ -36,11 +38,11 @@ export const HeroParameter = (props: HeroParameterProps) => {
                 <ul className={styles.parametersList}>
 
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_armor.png" alt="Защита"/>
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_armor.png`} alt="Защита"/>
                         <div>{hero.armor.toFixed(1)}</div>
                     </li>
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_magic_resist.png"
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_magic_resist.png`}
                              alt="Сопротивление магии"/>
                         <div>{hero.magic_resistance}</div>
                     </li>
@@ -51,18 +53,18 @@ export const HeroParameter = (props: HeroParameterProps) => {
                 <ul className={styles.parametersList}>
 
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_movement_speed.png"
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_movement_speed.png`}
                              alt="Скорость передвижения"/>
                         <div>{hero.movement_speed}</div>
                     </li>
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_turn_rate.png"
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_turn_rate.png`}
                              alt="Скорость разворота"/>
                         <div>{hero.turn_rate}</div>
                     </li>
 
                     <li className={styles.parameter}>
-                        <img className={styles.parameterIcon} src="/icons/stats/icon_vision.png"
+                        <img className={styles.parameterIcon} src={`${BASE}icons/stats/icon_vision.png`}
                              alt="Дальность обзора"/>
                         <div>{hero.sight_range_day}/{hero.sight_range_night}</div>
                     </li>

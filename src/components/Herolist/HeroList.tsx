@@ -50,14 +50,14 @@ export const HeroList = (props: HeroListProps) => {
                 })}
             </div>
 
-            {(customHero.length> 0 &&
+            {(customHero.length > 0 &&
 
                 <>
                     <h2 className={styles.title}>Кастомные герои</h2>
                     <div className={`${styles.heroList}`}>
                         {customHero.map((hero) => {
                             const isFavorite = favoriteHeroes.includes(hero.id);
-                            return <HeroCard key={hero.id} isFavorite={isFavorite} hero={hero}/>
+                            return <HeroCard customHero={true} key={hero.id} isFavorite={isFavorite} hero={hero}/>
                         })}
                     </div>
                 </>

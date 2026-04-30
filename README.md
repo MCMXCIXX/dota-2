@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+# Dota 2 Heroes — SPA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Одностраничное приложение со списком героев Dota 2, детальной информацией, избранным и возможностью создавать собственных героев.
 
-Currently, two official plugins are available:
+**Демо:** https://MCMXCIXX.github.io/dota-2
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Стек
 
-## React Compiler
+- **React 19** + **TypeScript**
+- **Redux Toolkit** + **react-redux** — управление состоянием
+- **React Router 7** (HashRouter) — маршрутизация
+- **Vite** — сборка
+- **SCSS Modules** — стили с изоляцией
+- **gh-pages** — деплой
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Функциональность
 
-## Expanding the ESLint configuration
+### Список героев (`/heroes`)
+- Загрузка списка с публичного API Dota 2
+- Карточка с фото, именем, основным атрибутом и сложностью
+- Кнопка лайка (добавить/убрать из избранного)
+- Переход на детальную страницу по клику на карточку
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Избранное (`/heroes/favorite`)
+- Отдельная страница со списком избранных героев
+- Сохраняется в `localStorage` между сессиями
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Детальная страница (`/hero/:id`)
+- Подробная информация о герое: биография, способности, характеристики
+- Атрибуты, параметры атаки/защиты/мобильности
+- Видео-аватар героя
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Создание героя (`/create`)
+- Форма с полями (имя, основной атрибут, сложность, биография)
+- Сохранение в общий store
+- Созданные герои появляются в общем списке
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Поиск
+- Поле поиска в шапке
+- Фильтрация в реальном времени (без кнопки "Найти")
+- Реализован через `debounce` для оптимизации
+
+## Структура проекта
+
+```
+src/
+├── components/        # Переиспользуемые компоненты
+│   ├── Header/
+│   ├── HeroCard/
+│   ├── HeroAvatar/
+│   ├── HeroBio/
+│   └── ...
+├── pages/             # Страницы маршрутов
+│   ├── MainPage/
+│   ├── DetailHero/
+│   ├── FavoriteHeroes/
+│   └── CreateHero/
+├── services/
+│   ├── api.ts                # Запросы к API через CORS-прокси
+│   ├── store/                # Redux store
+│   ├── redusers/             # Slice'ы (heroReducer)
+│   ├── thunks/               # Асинхронная логика
+│   └── utils.ts              # Утилиты (debounce и т.д.)
+└── types/             # TypeScript-типы (HeroShort, HeroDetail)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Хранение данных
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Состояние** — в Redux store (`heroReducerSlice`)
+- **Избранное** — продублировано в `localStorage` (восстанавливается при перезагрузке)
+- **Кастомные герои** — также сохраняются в `localStorage`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## API
+
+Используется публичное API Dota 2:
+- Список героев: `https://www.dota2.com/datafeed/herolist?language=russian`
+- Детали героя: `https://www.dota2.com/datafeed/herodata?language=russian&hero_id={id}`
+
+Поскольку API не отдаёт CORS-заголовки, в продакшене запросы проксируются через [corsproxy.io](https://corsproxy.io/). В dev-режиме используется встроенный прокси Vite.
+
+## Локальный запуск
+
+```bash
+# Установить зависимости
+npm install
+
+# Запустить dev-сервер
+npm run dev
+
+# Сборка для продакшена
+npm run build
+
+# Деплой на GitHub Pages
+npm run deploy
 ```
+
+## Деплой
+
+Проект автоматически разворачивается на GitHub Pages в ветку `gh-pages` командой `npm run deploy`.
+
+Используется `HashRouter` (URL вида `/#/heroes`), потому что GitHub Pages не поддерживает SPA-роутинг с `history API` без дополнительных хаков.
+
+## Скрипты
+
+| Команда | Описание |
+|---------|----------|
+| `npm run dev` | Запуск dev-сервера |
+| `npm run build` | Сборка проекта |
+| `npm run preview` | Предпросмотр продакшен-сборки |
+| `npm run lint` | Запуск ESLint |
+| `npm run deploy` | Деплой на GitHub Pages |
