@@ -1,8 +1,20 @@
 .header {
   display: flex;
+  justify-content: space-between;
   gap: 36px;
   padding: 16px;
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-gold);
+}
+.navigation {
+  display: flex;
+  gap: 16px;
+}
+.search {
+  padding: 16px;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
 }

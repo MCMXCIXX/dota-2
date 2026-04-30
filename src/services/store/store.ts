@@ -16,4 +16,5 @@ export const store = configureStore({
 store.subscribe(() => {
     const state = store.getState();
     localStorage.setItem('favoriteHeroes', JSON.stringify(state.heroReducerSlice.favoriteHeroes));
+    localStorage.setItem('customHero', JSON.stringify(state.heroReducerSlice.customHero));
 })

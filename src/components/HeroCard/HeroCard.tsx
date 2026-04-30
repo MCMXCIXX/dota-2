@@ -36,8 +36,6 @@ export const HeroCard = (props: HeroCardProps) => {
         } else {
             dispatch(addToFavoriteHero(hero.id))
         }
-
-
     }
 
 

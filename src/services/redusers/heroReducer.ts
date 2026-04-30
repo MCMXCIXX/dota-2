@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import type {HeroDetail, HeroShort} from "../../types/hero.ts";
+import type {CreateHeroPayload, HeroDetail, HeroShort} from "../../types/hero.ts";
 import {request} from "../api.ts";
 
 
@@ -7,6 +7,8 @@ interface HeroState {
     heroListShorts: HeroShort[];
     heroDetailList: HeroDetail[];
     favoriteHeroes: number[];
+    customHero: HeroDetail[];
+    searchInput: string;
     loading: boolean;
     error: string | null;
 }
@@ -20,6 +22,8 @@ const initialState: HeroState = {
     heroListShorts: [],
     heroDetailList: [],
     favoriteHeroes: loadFromStorage('favoriteHeroes', []),
+    customHero: loadFromStorage('customHero', []),
+    searchInput: '',
     loading: false,
     error: null,
 }
@@ -58,6 +62,16 @@ export const heroReducerSlice = createSlice({
         },
         deleteFromFavoriteHero: (state, action: PayloadAction<number>) => {
             state.favoriteHeroes = state.favoriteHeroes.filter((heroID) => heroID !== action.payload);
+        },
+        updateSearchInput: (state, action: PayloadAction<string>) => {
+            state.searchInput = action.payload;
+        },
+        createHero: (state, action: PayloadAction<CreateHeroPayload>) => {
+            const newHero = {
+                ...action.payload,
+            } as HeroDetail;
+            state.customHero.push(newHero);
+            state.heroDetailList.push(newHero);
         }
     },
     extraReducers: (builder) => {
@@ -93,6 +107,6 @@ export const heroReducerSlice = createSlice({
 
 
 export const {
-    addToFavoriteHero, deleteFromFavoriteHero
+    addToFavoriteHero, deleteFromFavoriteHero, updateSearchInput, createHero
 
 } = heroReducerSlice.actions;

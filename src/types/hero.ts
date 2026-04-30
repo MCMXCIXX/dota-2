@@ -127,3 +127,7 @@ export const ATTR_ICON: Record<HeroPrimaryAttr, string> = {
 //     [HERO_COMPLEXITY.Medium]: 'Средний',
 //     [HERO_COMPLEXITY.Hard]: 'Сложный',
 // };
+
+
+export type CreateHeroPayload = Pick<HeroDetail, 'name' | 'name_loc' | 'primary_attr' | 'complexity' | 'bio_loc'>;
+
