@@ -1,6 +1,8 @@
-const BASE_URL: string = '/api/dota';
+const TARGET_URL = 'https://www.dota2.com';
 
 export const request = (endpoint: string) => {
-    return fetch(`${BASE_URL}${endpoint}`, {})
-    .then(res => res.json())
+    const fullUrl = `${TARGET_URL}${endpoint}`;
+    const proxiedUrl = `https://corsproxy.io/?${encodeURIComponent(fullUrl)}`;
+    return fetch(proxiedUrl, {})
+        .then(res => res.json())
 }
